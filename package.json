@@ -10,16 +10,10 @@
   "author": "zinkevich",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
-    "babel-runtime": "^6.26.0",
-    "crawlerr": "^1.4.1",
-    "encoding": "^0.1.12",
-    "express": "^4.16.3",
+    "cheerio": "^1.0.0-rc.2",
     "iconv": "^2.3.0",
+    "mongodb": "^3.1.0-beta4",
     "nodemon": "^1.17.4",
-    "request": "^2.85.0",
-    "utf8": "^3.0.0",
-    "website-scraper": "^3.3.2",
-    "x-mac-cyrillic": "^1.0.0"
+    "request": "^2.85.0"
   }
 }
