@@ -121,7 +121,7 @@ let currentLink = linksToParse.splice (0,1)
  currentLink = currentLink.join()
  console.log (currentLink)
  console.log (typeof currentLink)
-startParse (currentLink)
+ startParse (currentLink)
 
 
 }
@@ -170,7 +170,7 @@ function startParse (currentLink) {
 
 
 
-  /*
+
     // размещение и название номера
     let costTable = $('#costtable').find('.tr_hover.acceptor').find('.shadow').toArray()
     for (var i = 0; i < costTable.length; i++) {
@@ -207,8 +207,8 @@ function startParse (currentLink) {
 
 
     currentObj.rooms= rooms
-  */
-  /*
+
+
   // цены по датам и вариантам размещения
   let roomSeparator = '';
   let roomSeparatorStatus = false;
@@ -221,14 +221,14 @@ function startParse (currentLink) {
 
     if ($(this).text() == roomSeparator) {
 
-      console.log ('-------------------------------------');
+      console.log ('Номер---------------------------------'+index+1);
 
        currentObj.rooms[index].priceTableAsString = priceTableAsString
        priceTableAsString = ''
        index++
     }
 
-  priceTableAsString += $(this).text()
+  priceTableAsString += 'separator'+$(this).text()
 
   if (index == currentObj.rooms.length-1) {
   currentObj.rooms[index].priceTableAsString = priceTableAsString
@@ -246,7 +246,7 @@ function startParse (currentLink) {
 
 
   })
-  */
+
 
   // статическая информация по объекту
   /*
@@ -289,7 +289,7 @@ function startParse (currentLink) {
 
   });
 
-
+console.log ('DONE')
 
   });
 
