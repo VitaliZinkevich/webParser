@@ -221,7 +221,7 @@ function startParse (currentLink) {
 
     if ($(this).text() == roomSeparator) {
 
-      console.log ('Номер---------------------------------'+index+1);
+      console.log ('Номер---------------------------------Создан');
 
        currentObj.rooms[index].priceTableAsString = priceTableAsString
        priceTableAsString = ''
@@ -249,32 +249,32 @@ function startParse (currentLink) {
 
 
   // статическая информация по объекту
-  /*
+/*
   let textInfo = ''
   $('#staticContent').find ('p').each (function (i, e) {
     console.log ($(this).text()) // текст из абзацев в статическом контенте
-    textInfo +=$(this).text()
+    textInfo += 'separator'+$(this).text()
   })
 
 
   let listInfo = ''
   $('#staticContent').find ('li').each (function (i, e){
-  console.log ($(this).text()) // списки, общие описание
-  listInfo += $(this).text()
+  //console.log ($(this).text()) // списки, общие описание
+  listInfo +='separator'+ $(this).text()
   })
-
+*//*
   let linkInfo= ''
-  $('#staticContent').find ('a').each (function (i, e) {
-    console.log ($(this).attr('href'))
-  linkInfo+=$(this).attr('href')
-     // линки на фото
+  $('#staticContent').find ('img').each (function (i, e) {
+    //console.log ($(this).attr('href'))
+  linkInfo+='separator'+$(this).attr('src')
+     // линки из картинок фото
   })
+*/
 
-
-  currentObj.textInfo = textInfo
-  currentObj.lists = listInfo
-  currentObj.links = linkInfo
-  */
+/*  currentObj.textInfo = textInfo
+  currentObj.lists = listInfo*/
+  /*currentObj.links = linkInfo
+  console.log (linkInfo.split ('separator'))*/
 
 
 

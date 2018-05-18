@@ -5,7 +5,61 @@ var MongoClient = require('mongodb').MongoClient
 
 var S = require('string');
 
+/*
+function clearRange(string) {
 
+let counter = 0
+let result = {}
+let mounths = ['января', 'февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря']
+
+if (string.indexOf ('не') != -1 ) {
+  return result.data = string
+  // не определены цены
+} else {
+
+  let tmp = S(string).stripLeft().stripRight().strip(' ').s
+  console.log (tmp)
+  let tmpArray = tmp.split ('-')
+  tmpArray.splice (-1,1)
+  tmpArray.forEach ( (e, i)=>{
+
+          if (counter > 1) {
+            if (mounths.indexOf (e) != -1) {
+              e = mounths.indexOf (e)+1
+              result.toMounth = e
+            } else {
+              result.toDay = e
+            }
+
+
+          } else {
+
+            if (mounths.indexOf (e) != -1) {
+              e = mounths.indexOf (e)+1
+              result.fromMounth = e
+            } else {
+              result.fromDay = e
+            }
+
+
+          }
+
+
+
+  })
+
+  return result
+
+
+}
+
+
+
+
+
+
+}
+*/
 MongoClient.connect('mongodb://localhost:27017/sanatoriiby', { useNewUrlParser: true }, function(err, result) {
   assert.equal(null, err);
   const db = result.db('sanatoriiby');
@@ -26,6 +80,16 @@ MongoClient.connect('mongodb://localhost:27017/sanatoriiby', { useNewUrlParser: 
       currentObj.name =  tmp.join(' ')
 
       currentObj.region = S (elem.region).stripLeft('()').stripRight('()').s
+
+// extract links for roomSeparator
+// not at that way
+/*
+    let curerntRoomFotoLinks = []
+
+    let separatedLinks = elem.links.split ('separator')
+    console.log (separatedLinks)
+
+*/
 
 
 
@@ -61,17 +125,19 @@ MongoClient.connect('mongodb://localhost:27017/sanatoriiby', { useNewUrlParser: 
                   // useless elem
               } else {
 
-                if (tmp.indexOf ('2018') != -1) {
+                if (tmp.indexOf ('2018') != -1 || tmp.indexOf ('2019') != -1) {
 
                   if (doneWithFirstDate  == false) {
 
-                    ranges.push (S(tmp).stripLeft().stripRight().s)
+                    // обработать в дату перед сохранением в массив
+
+                    ranges.push (S(tmp).stripLeft().stripRight()) // сюда сложить после обработки
                     doneWithFirstDate = true
                     rangePrices.push([])
 
                   } else {
 
-                    ranges.push (S(tmp).stripLeft().stripRight().s)
+                    ranges.push (S(tmp).stripLeft().stripRight())
                     k++
                     rangePrices.push([])
                   }
@@ -123,7 +189,7 @@ k = 0;
 })// end for each elem.rooms
 
      currentObj.rooms = newRooms
-
+     newRooms = []
     db.collection('prod_sanatorium').insert (currentObj)
     currentObj = {}
 
@@ -133,4 +199,5 @@ k = 0;
 
 
   })// end requesst to db
+  console.log ('DONE with converting')
 })// end connection
